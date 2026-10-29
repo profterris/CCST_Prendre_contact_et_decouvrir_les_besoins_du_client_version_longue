@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prendre contact et découvrir les besoins du client</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Fiche d'exercices en thème clair : blocs = séances, cartes dépliables, corrections masquables */
+:root {
+  --bg:        #f4f6f9;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --border:    #dfe3ea;
+  --border-hi: #b9c0ce;
+  --text:      #1d2230;
+  --text-dim:  #5c6476;
+  --accent:    #b97d00;
+  --accent-bg: #fff6df;
+  --green:     #1b8047;
+  --green-bg:  #ecf7f0;
+  --green-bd:  #c9e6d4;
+  --green-dk:  #12552f;
+  --red:       #c23b3b;
+  --blue:      #2d69ad;
+  --blue-bg:   #edf3fb;
+  --purple:    #6f45ad;
+  --font-head: 'Syne', 'Trebuchet MS', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius:    10px;
+  color-scheme: light;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #ffffff 0%, #eef2f8 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 44px 20px 32px;
+  text-align: center;
+}
+.site-header .kicker {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.site-header h1 {
+  font-family: var(--font-head);
+  font-size: clamp(24px, 6vw, 38px);
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+.site-header .sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 400;
+  max-width: 540px;
+  margin: 0 auto 20px;
+}
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin: 0 auto 22px;
+  font-size: 12.5px;
+  color: var(--text-dim);
+}
+
+/* ── NAV ANCRES ──────────────────────────────────────────── */
+.nav-anchors {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-anchors a {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.nav-anchors a:hover, .nav-anchors a:focus-visible { border-color: var(--accent); color: var(--accent); }
+
+/* ── CONTENEUR PRINCIPAL ─────────────────────────────────── */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 36px 18px 80px;
+}
+
+/* ── TITRE DE BLOC ───────────────────────────────────────── */
+.bloc-titre {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 52px 0 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.bloc-titre:first-child { margin-top: 0; }
+.bloc-titre .icone { font-size: 26px; flex-shrink: 0; }
+.bloc-titre h2 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.bloc-titre h2 small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ── MÉMO ────────────────────────────────────────────────── */
+.memo {
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin: 16px 0 24px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.memo .memo-titre {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.memo code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 5px;
+  padding: 8px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.memo .note { color: var(--text-dim); font-size: 13px; margin-top: 8px; }
+
+/* ── CARTE EXERCICE ──────────────────────────────────────── */
+.exo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color .15s;
+}
+.exo-card:hover { border-color: var(--border-hi); }
+
+.exo-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.exo-header::-webkit-details-marker { display: none; }
+.exo-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.exo-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.badge-1 { background: #e9f6ee; color: var(--green); border: 1px solid #bfe2cc; }
+.badge-2 { background: var(--accent-bg); color: #8a5d00; border: 1px solid #efd798; }
+.badge-3 { background: #fbeaea; color: var(--red); border: 1px solid #efc4c4; }
+.badge-exam { background: #f2ecfa; color: var(--purple); border: 1px solid #d9c9ef; }
+
+.exo-titre-txt {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1 1 200px;
+  min-width: 0;
+}
+.chevron { color: var(--text-dim); font-size: 13px; flex-shrink: 0; transition: transform .2s; }
+details[open] .chevron { transform: rotate(180deg); }
+
+/* ── CORPS DE L'EXERCICE ─────────────────────────────────── */
+.exo-body { padding: 0 16px 20px; border-top: 1px solid var(--border); }
+
+.contexte {
+  background: var(--blue-bg);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 16px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.contexte strong { color: var(--text); }
+
+.table-wrap { overflow-x: auto; margin: 12px 0; }
+.tableau-donnees {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  background: var(--surface);
+}
+.tableau-donnees th {
+  background: #eef1f6;
+  color: var(--text-dim);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.tableau-donnees td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+.tableau-donnees tr:last-child td { border-bottom: none; }
+.tableau-donnees td.num { font-weight: 700; color: var(--text); white-space: nowrap; }
+
+.questions { margin: 18px 0 0; }
+.question { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+.question .q-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.question p { font-size: 14px; margin: 0; min-width: 0; }
+
+/* ── COUP DE POUCE ───────────────────────────────────────── */
+.ordre-grandeur {
+  background: var(--accent-bg);
+  border: 1px solid #efd798;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13px;
+  color: #6e4b00;
+  margin: 12px 0 0;
+}
+.ordre-grandeur::before { content: "💡 "; }
+
+/* ── BOUTON CORRECTION ───────────────────────────────────── */
+.btn-corrige {
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 16px;
+  margin-top: 18px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-corrige:hover, .btn-corrige:focus-visible { border-color: var(--green); color: var(--green); }
+
+/* ── CORRECTION ──────────────────────────────────────────── */
+.correction {
+  display: none;
+  background: var(--green-bg);
+  border: 1px solid var(--green-bd);
+  border-radius: 6px;
+  padding: 16px;
+  margin-top: 14px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.correction.visible { display: block; }
+.correction .corr-etape {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--green-bd);
+}
+.correction .corr-etape:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.correction .c-num {
+  display: inline-block;
+  background: var(--green);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  margin-right: 6px;
+}
+.correction code {
+  display: block;
+  background: #ffffff;
+  border: 1px solid var(--green-bd);
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: var(--green-dk);
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  margin: 5px 0;
+}
+.correction .res { font-family: var(--font-head); font-weight: 700; color: var(--text); }
+.correction .conclu { margin-top: 8px; font-size: 13.5px; color: #2c6244; font-style: italic; }
+.correction .tableau-corr { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; background: #ffffff; }
+.correction .tableau-corr th {
+  background: #dff0e6;
+  color: var(--green-dk);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  text-align: left;
+}
+.correction .tableau-corr td { padding: 6px 10px; border-bottom: 1px solid var(--green-bd); color: #24402f; vertical-align: top; }
+.correction .tableau-corr td.val { font-weight: 700; color: var(--green); }
+
+/* ── SÉPARATEUR ──────────────────────────────────────────── */
+hr.section-sep { border: none; border-top: 1px solid var(--border); margin: 54px 0 0; }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+  background: var(--surface);
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .exo-titre-txt { font-size: 13.5px; }
+  .contexte { font-size: 13.5px; }
+  .tableau-donnees { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="kicker">🗣️ Bloc 1 – BTS CCST 2e année · épreuve E5</div>
+  <h1>Prendre contact et découvrir<br>les besoins du client</h1>
+  <p class="sub">Chapitre 9. 38 exercices en 10 séances, avec l'entreprise RESO. Ouvre un exercice, réponds sur ton ordinateur, puis vérifie avec la correction.</p>
+  <div class="legende">
+    <span class="badge badge-1">⬆ décollage</span> je découvre
+    <span class="badge badge-2">◆ intermédiaire</span> j'applique
+    <span class="badge badge-exam">★ examen</span> je m'entraîne
+  </div>
+  <nav class="nav-anchors">
+    <a href="#referentiel">0 · Repères</a>
+    <a href="#processus">1 · Du face-à-face à l'e-relation</a>
+    <a href="#contact">2 · Réussir la prise de contact</a>
+    <a href="#questions">3 · Les types de questions</a>
+    <a href="#soncase">4 · Les motivations SONCASE</a>
+    <a href="#plan">5 · Le plan de découverte</a>
+    <a href="#btog">6 · L'acheteur public</a>
+    <a href="#reformuler">7 · Reformuler</a>
+    <a href="#adapter">8 · S'adapter à son interlocuteur</a>
+    <a href="#synthese">9 · Synthétiser</a>
+    <a href="#examen">10 · Sujets type examen</a>
+  </nav>
+</header>
+
+<main>
+
+<div class="bloc-titre" id="referentiel">
+  <span class="icone">📌</span>
+  <h2><small>Repères · référentiel BTS CCST</small>Ce que tu travailles dans ce chapitre</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 épreuve E5 – bloc 1</div>
+  <code>Critères d'évaluation : le contexte technico-commercial et les attentes du prospect sont identifiés · des outils de négociation adaptés sont préparés · une démarche proactive de négociation est mise en œuvre · des outils de communication et de négociation adaptés au contexte sont mobilisés.</code>
+  <code>Objectif final : conduire à l'oral, en 8 minutes, la prise de contact et la découverte des besoins d'un client, jusqu'à la synthèse validée par le client, puis expliquer ses choix à la commission.</code>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 fil rouge – l'entreprise RESO et ses clients</div>
+  <code>RESO : PME qui conçoit et vend un CRM en ligne et une application pour tablettes et smartphones. Tu y es technico-commercial(e) en alternance, avec une tutrice.</code>
+  <code>Points forts de l'offre : fiches clients sur tablette · fonctionne sans réseau, synchronisation automatique au retour du réseau · dictée vocale · tableau de bord des ventes en temps réel · données hébergées en France et sauvegardées chaque jour · prise en main en 1 heure, formation incluse.</code>
+  <code>Outils d'aide à la vente : tablette de démonstration · captures d'écran et maquettes · vidéos · témoignages de clients.</code>
+  <code>OXO : PME de 45 salariés, cliente depuis 3 ans · Kenza Bénard, directrice générale, décide · Paul Green, directeur commercial, en conflit avec la directrice · Inès Barka et Hugo Lucciano, assistants commerciaux, sous ses ordres.</code>
+  <code>Clinique des Tilleuls : clinique privée de 300 salariés · Mme Roux, directrice, décide · M. Faure, service achats, négocie · les infirmières utiliseront l'outil.</code>
+  <code>Boulangerie Lemoine : 4 salariés, le dirigeant décide seul · Garage Duval : ancien client, aucune commande depuis 14 mois · Communauté de communes du Val Fleuri : client public (B to G), M. Ortiz est responsable du service technique.</code>
+</div>
+<hr class="section-sep">
+
+<!-- BLOC 1 -->
+<div class="bloc-titre" id="processus">
+  <span class="icone">🔄</span>
+  <h2><small>Séance 1</small>Bloc 1 – Du face-à-face à l'e-relation</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Processus de vente : prospection → prise de contact → découverte des besoins → argumentation et traitement des objections → conclusion et suivi → accompagnement et fidélisation.</code>
+  <code>Vendeur traditionnel = va vers le prospect (appels, visites) · vendeur inbound = le prospect vient vers l'entreprise (site, réseaux, contenus) : la prise de contact est inversée.</code>
+  <code>Signaux numériques = likes, commentaires, téléchargements, visites de pages : ils montrent l'intérêt d'un acheteur potentiel.</code>
+  <code>Le digital ne remplace pas la rencontre : le face-à-face reste au cœur de la négociation.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 1</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Traditionnel ou inbound ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta tutrice te montre comment cinq contacts sont arrivés ce mois-ci chez <strong>RESO</strong>.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Contact</th><th>Comment le contact est né</th></tr></thead><tbody><tr><td>a</td><td>OXO : Inès Barka, assistante commerciale, a téléchargé la fiche technique de l'application tablette sur le site de RESO</td></tr><tr><td>b</td><td>Garage Duval : tu l'appelles après l'avoir retrouvé dans la liste des anciens clients</td></tr><tr><td>c</td><td>Clinique des Tilleuls : M. Faure, service achats, a commenté un post LinkedIn de RESO sur la saisie des dossiers patients</td></tr><tr><td>d</td><td>Boulangerie Lemoine : ta tutrice passe à la boutique sans rendez-vous</td></tr><tr><td>e</td><td>Un gérant de PME pose une question sur le chat du site RESO</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque contact : démarche traditionnelle ou inbound.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour les contacts a et c, indique l'information que tu peux utiliser dès la prise de contact.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Remets dans l'ordre les étapes du processus de vente : conclusion et suivi · prise de contact · argumentation · prospection · fidélisation · découverte des besoins.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> en inbound, c'est le prospect qui fait le premier pas.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Contact</th><th>Démarche</th></tr></thead><tbody><tr><td>a</td><td class="val">inbound</td></tr><tr><td>b</td><td class="val">traditionnelle</td></tr><tr><td>c</td><td class="val">inbound</td></tr><tr><td>d</td><td class="val">traditionnelle</td></tr><tr><td>e</td><td class="val">inbound</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> a : le téléchargement de la fiche technique (<em>« vous avez consulté la fiche de notre application tablette… »</em>) · c : le thème du post commenté, la saisie des dossiers patients.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="res">Prospection → prise de contact → découverte des besoins → argumentation → conclusion et suivi → fidélisation.</p><p class="conclu">L'origine du contact fait partie de l'historique de la relation à présenter dans la fiche descriptive E5.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 2</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Deux vendeurs, deux méthodes</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Chez RESO, deux commerciaux travaillent différemment. Voici ce qu'ils font.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Action</th></tr></thead><tbody><tr><td>1</td><td>Prospecter au hasard des entreprises de la zone</td></tr><tr><td>2</td><td>Repérer sur LinkedIn les entreprises qui commentent des posts sur la gestion client</td></tr><tr><td>3</td><td>Appeler pour prendre rendez-vous en rappelant le dernier échange</td></tr><tr><td>4</td><td>Répondre sur le chat avec un contenu adapté au problème exposé par le prospect</td></tr><tr><td>5</td><td>Faire exprimer les besoins pendant un rendez-vous</td></tr><tr><td>6</td><td>Utiliser les pages consultées par le prospect sur le site pour orienter l'échange</td></tr><tr><td>7</td><td>Construire son argumentation à partir de la découverte en rendez-vous</td></tr><tr><td>8</td><td>Adapter sa présentation aux informations recueillies en ligne avant le rendez-vous</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Place chaque action dans un tableau : étape (identifier, contacter, découvrir, argumenter) et type de vendeur (traditionnel ou inbound).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Donne deux raisons pour lesquelles le face-à-face reste nécessaire.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Étape</th><th>Traditionnel</th><th>Inbound</th></tr></thead><tbody><tr><td>identifier</td><td class="val">1</td><td class="val">2</td></tr><tr><td>contacter</td><td class="val">3</td><td class="val">4</td></tr><tr><td>découvrir</td><td class="val">5</td><td class="val">6</td></tr><tr><td>argumenter</td><td class="val">7</td><td class="val">8</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> La rencontre crée la confiance et l'émotion · elle permet de s'adapter en direct au client, à ses réactions et à ce qu'il ne dit pas.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 3</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Lire les signaux numériques</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Le CRM de RESO a enregistré cette semaine les signaux suivants.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Lettre</th><th>Signal</th></tr></thead><tbody><tr><td>a</td><td>Inès Barka (OXO) a téléchargé la fiche technique de l'application tablette</td></tr><tr><td>b</td><td>M. Faure (Clinique des Tilleuls) a commenté un post sur la saisie des dossiers patients</td></tr><tr><td>c</td><td>Un étudiant a aimé trois posts de RESO</td></tr><tr><td>d</td><td>Le dirigeant du Garage Duval a consulté deux fois la page des tarifs</td></tr><tr><td>e</td><td>Un concurrent s'est abonné à la page LinkedIn de RESO</td></tr><tr><td>f</td><td>M. Ortiz (Val Fleuri) a téléchargé le guide « équiper ses agents de terrain »</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Quels signaux justifient une prise de contact ? Justifie.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Classe-les du plus urgent au moins urgent.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Rédige un message LinkedIn de 3 lignes à M. Faure.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> plus le signal est proche d'un achat, plus il est urgent.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> a, b, d et f : ce sont des clients ou prospects qui montrent un intérêt pour l'offre. c et e ne sont pas des acheteurs potentiels.</div>
+      <div class="corr-etape"><span class="c-num">2</span> d (consulter les tarifs = étape proche de la décision, ancien client) → a (client actuel, intérêt précis) → b → f. Un classement justifié différent est accepté.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Exemple : <em>« Bonjour M. Faure, merci pour votre commentaire sur la saisie des dossiers patients. Plusieurs cliniques ont réduit ce temps grâce à la tablette. Seriez-vous disponible 20 minutes la semaine prochaine pour en parler ? »</em> <p class="conclu">En e-relation, le message s'appuie sur le signal et propose une suite concrète.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 4</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Le parcours de ton client</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">À l'épreuve E5, tu présentes l'historique du contact avec ton client. Si ta situation n'est pas encore choisie, utilise le cas d'OXO (exercice 1).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Retrace les étapes du contact : qui a fait le premier pas, par quel canal, quels échanges ont suivi.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Indique si le parcours est traditionnel, digital ou mixte (phygital).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Présente-le en 1 minute à ton binôme, qui chronomètre.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : source du contact (salon, appel, site, réseau…), dates approximatives, interlocuteurs rencontrés.</div>
+      <div class="corr-etape"><span class="c-num">2</span> La plupart des parcours sont mixtes : un premier signal en ligne suivi d'un rendez-vous.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critère « le contexte technico-commercial et les attentes du prospect sont identifiés ».</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 2 -->
+<div class="bloc-titre" id="contact" style="margin-top:40px">
+  <span class="icone">🚪</span>
+  <h2><small>Séance 2</small>Bloc 2 – Réussir les premières minutes</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Règle des 4 × 20 : 20 premières secondes · 20 premiers gestes (ou pas) · 20 premiers mots · 20 centimètres du visage.</code>
+  <code>Créer une ambiance favorable = se présenter personnellement, présenter l'entreprise et son activité.</code>
+  <code>Accroche historique = s'appuyer sur un contact passé · accroche avantage = question qui appelle une réponse positive (premier contact).</code>
+  <code>Rassurer = annoncer le but et la durée de l'entretien.</code>
+  <code>AIDA : attirer l'attention · faire naître l'intérêt · susciter le désir · inciter à l'action.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 5</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Le juge des 4 × 20</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Jeu collectif. Huit comportements observés lors de rendez-vous sont projetés. Pour chacun, la classe vote à main levée : <strong>bon réflexe</strong> ou <strong>faute</strong>. Le premier qui justifie correctement marque 1 point.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Comportement</th></tr></thead><tbody><tr><td>1</td><td>Tu entres dans le bureau en regardant ton téléphone</td></tr><tr><td>2</td><td>Tu souris et regardes Mme Roux dans les yeux en la saluant</td></tr><tr><td>3</td><td>Tu commences par <em>« désolé de vous déranger, je ne serai pas long »</em></td></tr><tr><td>4</td><td>Tu t'assois avant qu'on t'y invite</td></tr><tr><td>5</td><td>Tu te présentes en articulant : prénom, nom, entreprise</td></tr><tr><td>6</td><td>Tu croises les bras pendant que M. Faure parle</td></tr><tr><td>7</td><td>Stressé(e), tu parles très vite</td></tr><tr><td>8</td><td>Tu te tiens droit(e), les pieds ancrés au sol, et tu attends que le client te tende la main</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rattache chaque comportement à l'un des 4 × 20.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Vote, puis corrige chaque faute en une phrase.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> on n'a jamais deux fois l'occasion de faire une première bonne impression.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>4 × 20</th><th>Verdict et correction</th></tr></thead><tbody><tr><td>1</td><td>20 premiers pas</td><td class="val">faute : téléphone rangé, regard vers le client</td></tr><tr><td>2</td><td>20 cm du visage</td><td class="val">bon réflexe</td></tr><tr><td>3</td><td>20 premiers mots</td><td class="val">faute : on ne s'excuse pas d'être là, on annonce l'intérêt du rendez-vous</td></tr><tr><td>4</td><td>20 premiers gestes</td><td class="val">faute : attendre l'invitation du client</td></tr><tr><td>5</td><td>20 premiers mots</td><td class="val">bon réflexe</td></tr><tr><td>6</td><td>20 premiers gestes</td><td class="val">faute : gestes d'ouverture, mains visibles</td></tr><tr><td>7</td><td>20 premières secondes</td><td class="val">faute : contrôler son débit, respirer</td></tr><tr><td>8</td><td>20 premiers pas</td><td class="val">bon réflexe</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">À l'épreuve E5, la commission observe ta posture dès les premières secondes de la négociation simulée.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 6</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Choisir et rédiger son accroche</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu as quatre rendez-vous cette semaine.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Client</th><th>Situation</th></tr></thead><tbody><tr><td>A – OXO</td><td>client depuis 3 ans, Inès Barka a téléchargé la fiche de l'application tablette</td></tr><tr><td>B – Clinique des Tilleuls</td><td>M. Faure, rencontré 5 minutes sur un salon professionnel de la santé</td></tr><tr><td>C – Boulangerie Lemoine</td><td>premier contact, le dirigeant ne connaît pas RESO</td></tr><tr><td>D – Garage Duval</td><td>ancien client, aucune commande depuis 14 mois</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Pour chaque client, choisis l'accroche historique ou l'accroche avantage. Justifie.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige l'accroche en une phrase, puis une phrase pour rassurer (but et durée).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Lis ton accroche pour C à voix haute : la classe élit la plus percutante.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> s'il existe un contact passé, même court, sers-t'en.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> A, B et D : accroche historique (un contact a déjà eu lieu) · C : accroche avantage (premier contact).</div>
+      <div class="corr-etape"><span class="c-num">2</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Client</th><th>Exemple d'accroche et de phrase rassurante</th></tr></thead><tbody><tr><td>A</td><td class="val">« Vous avez consulté la fiche de notre application tablette : je vous propose 30 minutes pour voir ce qu'elle apporterait à vos commerciaux. »</td></tr><tr><td>B</td><td class="val">« Lors du salon, vous m'aviez parlé du temps perdu à saisir les dossiers. Je vous propose 20 minutes pour faire le point sur ce sujet. »</td></tr><tr><td>C</td><td class="val">« Retrouver en un clic les commandes de vos clients fidèles vous intéresserait, n'est-ce pas ? Je vous propose 15 minutes pour en parler. »</td></tr><tr><td>D</td><td class="val">« Vous avez utilisé notre CRM pendant deux ans : je souhaite savoir ce qui a changé chez vous depuis. Cela prendra 15 minutes. »</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Une bonne accroche est courte, centrée sur le client et non sur RESO.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 7</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Capter l'intérêt d'un client pressé avec AIDA</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Le dirigeant de la <strong>boulangerie Lemoine</strong> t'accorde <strong>10 minutes</strong>, entre deux fournées. Il note les commandes de ses clients réguliers dans un cahier, et l'an dernier trois commandes de bûches ont été oubliées à Noël.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige ce que tu dis ou fais pour chaque étape d'AIDA (une phrase par étape).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Joue ton AIDA en 1 minute devant ton binôme, qui joue le boulanger pressé.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> l'attention se capte avec ce qui touche le client : ici, les commandes oubliées.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Étape</th><th>Exemple</th></tr></thead><tbody><tr><td>attention</td><td class="val">« Combien vous a coûté l'oubli des bûches à Noël dernier ? »</td></tr><tr><td>intérêt</td><td class="val">« Avec une tablette, chaque commande est enregistrée et rappelée la veille. »</td></tr><tr><td>désir</td><td class="val">« Imaginez le 24 décembre sans aucun client mécontent. »</td></tr><tr><td>action</td><td class="val">« Je vous propose de tester l'application pendant une semaine. Mardi ou jeudi ? »</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">L'action se termine par une question alternative : le client choisit une date, pas entre oui et non.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 8</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Tes 2 premières minutes devant la commission</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Pendant la négociation simulée de l'épreuve E5, la commission observe ta prise de contact avec le client de ta fiche descriptive. Si ta situation n'est pas encore choisie, prépare ta prise de contact avec <strong>Inès Barka</strong> (OXO), qui a téléchargé la fiche de l'application tablette.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige ta prise de contact : salutation et présentation, accroche, but et durée de l'entretien, transition vers la découverte.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Joue-la devant un binôme qui chronomètre (2 minutes maximum) et observe les 4 × 20.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Le binôme te donne un point fort et un point à améliorer. Recommence en tenant compte de sa remarque.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> <em>« Bonjour Madame…, [prénom nom], de [entreprise]. Lors de notre échange du…, vous m'aviez dit… Je vous propose… minutes pour… Pour commencer, pouvez-vous me dire… ? »</em></div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : nom de l'interlocuteur, présentation claire, accroche adaptée à l'historique du contact, durée annoncée, première question ouverte.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Posture : sourire, regard, débit maîtrisé, gestes d'ouverture.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critère « des outils de communication et de négociation adaptés au contexte sont mobilisés ».</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 3 -->
+<div class="bloc-titre" id="questions" style="margin-top:40px">
+  <span class="icone">❓</span>
+  <h2><small>Séance 3</small>Bloc 3 – Varier les types de questions</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Découvrir l'acheteur = besoins rationnels (quoi proposer) · découvrir l'homme = besoins psychologiques (comment le proposer).</code>
+  <code>Question ouverte = s'informer (comment, que, pourquoi…) · fermée = préciser, verrouiller (oui/non, combien, quand…) · alternative = orienter (plutôt A ou B ?).</code>
+  <code>Question en retour = renvoyer la question · question relais = faire développer (c'est-à-dire ?) · ballon d'essai = tester une hypothèse.</code>
+  <code>Entonnoir = commencer large (questions ouvertes) et finir précis (questions fermées et alternatives).</code>
+  <code>La qualité des questions compte plus que leur nombre.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 9</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Quel type de question ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu prépares ton rendez-vous avec <strong>Inès Barka</strong> chez OXO. Ta tutrice a noté dix questions. Défi : 4 minutes pour tout classer.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Question</th></tr></thead><tbody><tr><td>1</td><td>Comment vos commerciaux suivent-ils leurs clients aujourd'hui ?</td></tr><tr><td>2</td><td>Combien de commerciaux sont sur la route ?</td></tr><tr><td>3</td><td>Préférez-vous une démonstration sur tablette ou sur ordinateur ?</td></tr><tr><td>4</td><td>Vous dites que la synchronisation pose problème, c'est-à-dire ?</td></tr><tr><td>5</td><td>Qu'est-ce qui vous a amenée à télécharger notre fiche technique ?</td></tr><tr><td>6</td><td>Utilisez-vous déjà des tablettes ?</td></tr><tr><td>7</td><td>(Inès : <em>« le prix, c'est important ? »</em>) Et pour vous, qu'est-ce qui compte le plus ?</td></tr><tr><td>8</td><td>J'ai l'impression que gagner du temps sur la saisie est votre priorité. C'est bien cela ?</td></tr><tr><td>9</td><td>Pouvez-vous me donner un exemple de rendez-vous où une information vous a manqué ?</td></tr><tr><td>10</td><td>Le déploiement doit-il se faire avant ou après janvier ?</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque question : ouverte, fermée, alternative, en retour, relais ou ballon d'essai.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Transforme les questions 2 et 6 en questions ouvertes.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> demande-toi quelle réponse le client peut donner : un mot, un choix ou un développement ?</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Type</th><th>Questions</th></tr></thead><tbody><tr><td>ouverte</td><td class="val">1, 5</td></tr><tr><td>fermée</td><td class="val">2, 6</td></tr><tr><td>alternative</td><td class="val">3, 10</td></tr><tr><td>relais</td><td class="val">4, 9</td></tr><tr><td>en retour</td><td class="val">7</td></tr><tr><td>ballon d'essai</td><td class="val">8</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> 2 : <em>« Comment s'organise votre équipe commerciale ? »</em> · 6 : <em>« Quels outils vos commerciaux utilisent-ils en déplacement ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 10</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">La bonne question au bon moment</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Rendez-vous avec <strong>Mme Roux</strong>, directrice de la Clinique des Tilleuls. Six moments de l'entretien.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Moment</th></tr></thead><tbody><tr><td>1</td><td>Tu débutes la découverte</td></tr><tr><td>2</td><td>Elle dit <em>« on a des soucis avec le papier »</em>, sans détail</td></tr><tr><td>3</td><td>Tu penses que le prix la préoccupe, sans en être sûr(e)</td></tr><tr><td>4</td><td>Tu veux connaître le nombre de services concernés</td></tr><tr><td>5</td><td>Tu veux fixer la date de la démonstration</td></tr><tr><td>6</td><td>Elle te demande : <em>« et vous, que feriez-vous à ma place ? »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Choisis le type de question adapté à chaque moment.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige la question.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>Type</th><th>Exemple</th></tr></thead><tbody><tr><td>1</td><td>ouverte</td><td class="val">« Comment s'organise aujourd'hui le suivi des soins ? »</td></tr><tr><td>2</td><td>relais</td><td class="val">« C'est-à-dire ? »</td></tr><tr><td>3</td><td>ballon d'essai</td><td class="val">« Le budget semble être un point important pour vous, c'est bien cela ? »</td></tr><tr><td>4</td><td>fermée</td><td class="val">« Combien de services sont concernés ? »</td></tr><tr><td>5</td><td>alternative</td><td class="val">« Préférez-vous mardi ou jeudi pour la démonstration ? »</td></tr><tr><td>6</td><td>en retour</td><td class="val">« Qu'est-ce qui serait le plus important pour vous dans ce choix ? »</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">Au moment 6, la question en retour évite de donner un avis trop tôt et relance la découverte.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 11</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">L'entonnoir de la Clinique des Tilleuls</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Rendez-vous avec <strong>M. Faure</strong> au sujet de tablettes pour les infirmières. Tes questions sont dans le désordre.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Lettre</th><th>Question</th></tr></thead><tbody><tr><td>a</td><td>Combien d'infirmières utiliseraient une tablette ?</td></tr><tr><td>b</td><td>Comment se passe aujourd'hui la saisie des dossiers dans les services ?</td></tr><tr><td>c</td><td>Préférez-vous un déploiement service par service ou dans toute la clinique ?</td></tr><tr><td>d</td><td>Qu'est-ce qui vous gêne le plus dans ce fonctionnement ?</td></tr><tr><td>e</td><td>Si je comprends bien, la double saisie fait perdre du temps aux équipes de nuit, c'est cela ?</td></tr><tr><td>f</td><td>Quand souhaitez-vous que les équipes soient équipées ?</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Remets les questions dans l'ordre de l'entonnoir.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Explique pourquoi il ne faut pas commencer par la question a.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Ajoute une question relais à poser juste après la question d.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> du général au précis, puis on oriente vers la suite.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <p class="res">b → d → e → a → f → c</p></div>
+      <div class="corr-etape"><span class="c-num">2</span> Une question fermée en ouverture bloque l'échange : le client répond par un chiffre et n'exprime ni ses problèmes ni ses attentes.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Exemple : <em>« Pouvez-vous me donner un exemple récent ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 12</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">L'interview éclair sans question fermée</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Par trois. Le « client » est un étudiant qui parle de son entreprise d'alternance comme s'il en était le responsable. Le commercial découvre son activité et ses difficultés. L'observateur compte les questions.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : pose pendant 2 minutes uniquement des questions ouvertes et relais.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Observateur : 1 point par question ouverte ou relais, 1 point en moins par question fermée.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Commercial : termine par une question alternative pour proposer la suite. Changez de rôle.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> si une question fermée t'échappe, rattrape-toi avec <em>« pouvez-vous m'en dire plus ? »</em>.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : questions qui font parler le client de son organisation, de ses difficultés et de ses projets.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Un bon score se situe autour de 6 à 8 points en 2 minutes : il faut aussi laisser le client répondre.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">C'est la posture attendue pendant la négociation simulée : le candidat fait parler le client plus qu'il ne parle.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 4 -->
+<div class="bloc-titre" id="soncase" style="margin-top:40px">
+  <span class="icone">💭</span>
+  <h2><small>Séance 4</small>Bloc 4 – Décoder les motivations SONCASE</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Sympathie = faire plaisir, se faire plaisir, privilégier un vendeur pour ses bons conseils · orgueil = se distinguer, sentiment de pouvoir.</code>
+  <code>Nouveauté = produits inédits, nouvelles technologies · confort = bien-être, simplicité d'usage.</code>
+  <code>Argent = moindre coût, meilleur rapport qualité/prix · sécurité = protection, fiabilité, garanties · environnement = dimension écologique.</code>
+  <code>Chaque client a souvent une motivation dominante et une motivation secondaire.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 13</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Le mot qui trahit la motivation</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Jeu de vitesse. Un mot est projeté, le premier qui donne la bonne motivation SONCASE marque 1 point.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Mot entendu</th></tr></thead><tbody><tr><td>1</td><td>garantie</td></tr><tr><td>2</td><td>dernier cri</td></tr><tr><td>3</td><td>économie</td></tr><tr><td>4</td><td>simple</td></tr><tr><td>5</td><td>image de marque</td></tr><tr><td>6</td><td>recyclable</td></tr><tr><td>7</td><td>confiance</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Associe chaque mot à une motivation SONCASE.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Trouve un autre mot pour chaque motivation.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> 1 : sécurité · 2 : nouveauté · 3 : argent · 4 : confort · 5 : orgueil · 6 : environnement · 7 : sympathie.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemples : sécurité « fiable » · nouveauté « innovant » · argent « rentable » · confort « pratique » · orgueil « prestige » · environnement « durable » · sympathie « relation ».</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 14</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Une phrase, une motivation, un argument</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Phrases entendues chez des clients et prospects de RESO.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Qui ?</th><th>Phrase</th></tr></thead><tbody><tr><td>1</td><td>Mme Roux, Clinique des Tilleuls</td><td><em>« Je veux que les données de mes patients soient protégées. »</em></td></tr><tr><td>2</td><td>Inès Barka, OXO</td><td><em>« Vous avez une fonction de dictée vocale ? Ça m'intéresse. »</em></td></tr><tr><td>3</td><td>Paul Green, OXO</td><td><em>« Avec cet outil, mon équipe sera la plus performante du groupe. »</em></td></tr><tr><td>4</td><td>Dirigeant, boulangerie Lemoine</td><td><em>« Il me faut un outil simple, que mes vendeuses prendront en main en une heure. »</em></td></tr><tr><td>5</td><td>M. Faure, Clinique des Tilleuls</td><td><em>« Quel est le coût par utilisateur ? Nous comparons trois devis. »</em></td></tr><tr><td>6</td><td>M. Ortiz, Val Fleuri</td><td><em>« Si on supprime les bons papier, c'est mieux pour la planète. »</em></td></tr><tr><td>7</td><td>Garage Duval</td><td><em>« Votre collègue m'avait très bien conseillé, je vous fais confiance. »</em></td></tr><tr><td>8</td><td>Hugo Lucciano, OXO</td><td><em>« Je veux moins de saisies à faire le soir en rentrant. »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Indique la motivation SONCASE de chaque phrase.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour les phrases 1, 4 et 8, propose un argument en une phrase, à partir des points forts de RESO (repères en haut de page).</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>SONCASE</th></tr></thead><tbody><tr><td>1</td><td class="val">sécurité</td></tr><tr><td>2</td><td class="val">nouveauté</td></tr><tr><td>3</td><td class="val">orgueil</td></tr><tr><td>4</td><td class="val">confort</td></tr><tr><td>5</td><td class="val">argent</td></tr><tr><td>6</td><td class="val">environnement</td></tr><tr><td>7</td><td class="val">sympathie</td></tr><tr><td>8</td><td class="val">confort</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> 1 : <em>« vos données sont hébergées en France et sauvegardées chaque jour »</em> · 4 : <em>« la prise en main demande une heure, et la formation est incluse »</em> · 8 : <em>« avec la dictée vocale, le compte rendu est fait dans la voiture, entre deux rendez-vous »</em>.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Repérer la motivation dominante permet d'argumenter ensuite de façon personnalisée.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 15</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Le profil SONCASE de Mme Roux</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Extrait de ton entretien avec <strong>Mme Roux</strong>. Deux étudiants le lisent à voix haute.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Qui</th><th>Réplique</th></tr></thead><tbody><tr><td>Toi</td><td>Comment se passe la saisie des soins aujourd'hui ?</td></tr><tr><td>Mme Roux</td><td>Sur papier, puis sur ordinateur. Mes infirmières perdent une heure par jour, et j'ai peur des erreurs dans les dossiers.</td></tr><tr><td>Toi</td><td>Qu'est-ce qui vous inquiète le plus ?</td></tr><tr><td>Mme Roux</td><td>Qu'une erreur de dosage passe inaperçue. Et puis, il y a deux ans, un logiciel a planté pendant une semaine.</td></tr><tr><td>Toi</td><td>Qu'attendez-vous d'un nouvel outil ?</td></tr><tr><td>Mme Roux</td><td>Qu'il soit fiable avant tout. Et si mes équipes gagnent du temps, tant mieux.</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Identifie la motivation dominante et la motivation secondaire de Mme Roux. Justifie avec ses mots.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige le ballon d'essai qui te permet de vérifier la motivation dominante.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <p class="res">Dominante : sécurité · secondaire : confort.</p> Sécurité : <em>« peur des erreurs »</em>, <em>« erreur de dosage »</em>, <em>« a planté »</em>, <em>« fiable avant tout »</em> · confort : <em>« gagnent du temps »</em>.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : <em>« Si je vous comprends bien, la fiabilité passe avant tout le reste, c'est bien cela ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 16</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Jeu du client mystère</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Par trois : un client, un commercial RESO, un observateur. Le client choisit un personnage ci-dessous et, en secret, une motivation SONCASE dominante, qu'il écrit dans un message à l'observateur.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Personnage</th><th>Ce que le client sait de sa situation</th></tr></thead><tbody><tr><td>Mme Roux, directrice de la Clinique des Tilleuls</td><td>les infirmières notent les soins sur papier puis les ressaisissent sur ordinateur · elles perdent environ 1 heure par jour · un essai avec un autre prestataire a échoué il y a deux ans</td></tr><tr><td>Dirigeant de la boulangerie Lemoine</td><td>4 salariés · commandes des clients fidèles notées dans un cahier · oublis de commandes pour les fêtes · peu à l'aise avec l'informatique</td></tr><tr><td>Inès Barka, OXO</td><td>12 commerciaux sur la route · notes perdues entre deux rendez-vous · bug de synchronisation en mars · la directrice reproche le manque de remontées d'informations</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : mène 4 minutes de découverte en utilisant au moins trois types de questions.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Annonce la motivation dominante que tu as repérée et justifie-la par une phrase du client.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Observateur : compte les types de questions utilisés. Score : 2 points si la motivation est trouvée, 1 point par type de question. Changez de rôle.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> écoute les mots du client : « risque », « protéger » renvoient à la sécurité · « simple », « rapide » au confort.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : questions ouvertes en début d'entretien, questions relais pour approfondir, ballon d'essai pour tester la motivation.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Le ballon d'essai est l'outil le plus efficace pour vérifier une hypothèse : <em>« la sécurité des données semble être votre priorité, c'est bien cela ? »</em></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critère « une démarche proactive de négociation est mise en œuvre ».</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 5 -->
+<div class="bloc-titre" id="plan" style="margin-top:40px">
+  <span class="icone">🗺️</span>
+  <h2><small>Séance 5</small>Bloc 5 – Construire son plan de découverte</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Plan de découverte (check-list) = liste des thèmes à aborder, préparée avant l'entretien.</code>
+  <code>4 thèmes : historique de la relation · présent (comment fait-il ?) · futur (que veut-il ?) · psychologie (qui est-il ?).</code>
+  <code>Présent = organisation, contraintes, insatisfactions (coûts, pannes…) · futur = projets, solution attendue · psychologie = motivations, freins, habitudes.</code>
+  <code>On ne pose pas une question dont on connaît déjà la réponse : on la transforme en question de validation.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 17</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Ranger les questions dans le plan</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta tutrice a préparé huit questions pour <strong>Mme Roux</strong>, directrice de la Clinique des Tilleuls.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Question</th></tr></thead><tbody><tr><td>1</td><td>Depuis notre rencontre au salon, avez-vous avancé sur votre projet ?</td></tr><tr><td>2</td><td>Comment les infirmières notent-elles les soins aujourd'hui ?</td></tr><tr><td>3</td><td>Qu'est-ce qui vous pose le plus de problèmes dans ce fonctionnement ?</td></tr><tr><td>4</td><td>À quoi ressemblerait la journée idéale d'une infirmière cheffe ?</td></tr><tr><td>5</td><td>Qu'attendez-vous d'un nouvel outil ?</td></tr><tr><td>6</td><td>Qu'est-ce qui vous ferait hésiter à changer d'outil ?</td></tr><tr><td>7</td><td>Vous aviez testé un autre prestataire : comment cela s'était-il passé ?</td></tr><tr><td>8</td><td>Qu'est-ce qui compte le plus pour vous dans le choix d'un partenaire ?</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Range chaque question dans l'un des 4 thèmes du plan de découverte.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Dans quel ordre poserais-tu les thèmes ? Justifie.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Thème</th><th>Questions</th></tr></thead><tbody><tr><td>historique</td><td class="val">1, 7</td></tr><tr><td>présent</td><td class="val">2, 3</td></tr><tr><td>futur</td><td class="val">4, 5</td></tr><tr><td>psychologie</td><td class="val">6, 8</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> Historique → présent → futur, la psychologie se découvre tout au long de l'échange. Partir de l'historique rassure le client et montre ton professionnalisme.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 18</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Le plan de découverte pour OXO</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Rappel du CRM : OXO, PME de <strong>45 salariés</strong>, cliente de RESO depuis 3 ans · commande ses licences chaque année en janvier · réclamation en mars pour un bug de synchronisation · Inès Barka a téléchargé la fiche de l'application tablette. Tu la rencontres la semaine prochaine.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige deux questions par thème (historique, présent, futur, psychologie), en utilisant au moins trois types de questions.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour chaque question, note ce que tu cherches à savoir.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Échange ton plan avec un binôme : il surligne ta meilleure question et celle à améliorer.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> la réclamation de mars ne doit pas être cachée : c'est une question d'historique.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Thème</th><th>Exemple de question</th><th>Ce que je cherche</th></tr></thead><tbody><tr><td>historique</td><td>Le bug de synchronisation de mars est-il réglé ?</td><td class="val">satisfaction actuelle</td></tr><tr><td>historique</td><td>Qu'est-ce qui vous a intéressée dans la fiche de l'application ?</td><td class="val">source de l'intérêt</td></tr><tr><td>présent</td><td>Comment vos commerciaux préparent-ils leurs rendez-vous ?</td><td class="val">organisation</td></tr><tr><td>présent</td><td>Combien sont sur la route chaque jour ?</td><td class="val">quantités</td></tr><tr><td>futur</td><td>Qu'aimeriez-vous que vos commerciaux puissent faire sur tablette ?</td><td class="val">solution attendue</td></tr><tr><td>futur</td><td>L'équipement doit-il être prêt avant ou après la commande de janvier ?</td><td class="val">délai</td></tr><tr><td>psychologie</td><td>Qu'est-ce qui pourrait freiner votre équipe ?</td><td class="val">freins</td></tr><tr><td>psychologie</td><td>Qui d'autre donnera son avis sur ce projet ?</td><td class="val">circuit de décision</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">La dernière question est utile : chez OXO, c'est la directrice, Kenza Bénard, qui décide.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 19</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Corriger le plan d'un collègue</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Un autre alternant de RESO a préparé ce plan pour relancer le <strong>Garage Duval</strong> (ancien client, aucune commande depuis 14 mois, 6 salariés). Ta tutrice te demande de le relire.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Question prévue</th></tr></thead><tbody><tr><td>1</td><td>Vous êtes bien le Garage Duval ?</td></tr><tr><td>2</td><td>Avez-vous toujours 6 salariés ?</td></tr><tr><td>3</td><td>Utilisez-vous un autre logiciel ?</td></tr><tr><td>4</td><td>Êtes-vous satisfait de ce logiciel ?</td></tr><tr><td>5</td><td>Notre nouvelle version vous intéresse ?</td></tr><tr><td>6</td><td>Vous signez aujourd'hui ?</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Relève trois erreurs dans ce plan.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Réécris le plan en 6 questions, en couvrant les 4 thèmes.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> un ancien client qui part a souvent une raison : il faut la découvrir.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Uniquement des questions fermées · aucune question sur la raison du départ (historique) ni sur les projets (futur) · question 1 inutile (réponse connue) · question 6 prématurée : on ne conclut pas pendant la découverte.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : historique <em>« qu'est-ce qui vous a amené à arrêter notre CRM ? »</em> · présent <em>« comment suivez-vous aujourd'hui vos clients et leurs rendez-vous d'entretien ? »</em> · <em>« qu'est-ce qui vous satisfait le moins dans cet outil ? »</em> · futur <em>« quels sont vos projets pour l'atelier cette année ? »</em> · psychologie <em>« qu'est-ce qui compterait le plus pour vous si vous changiez d'outil ? »</em> · validation <em>« vous êtes toujours 6 dans l'équipe ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 20</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Le plan de découverte de ta fiche E5</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Le plan de découverte est un outil de négociation que tu peux joindre en annexe de ta fiche descriptive. Si ta situation n'est pas encore choisie, construis le plan pour le <strong>dirigeant de la boulangerie Lemoine</strong> (4 salariés, commandes notées dans un cahier, oublis pour les fêtes, peu à l'aise avec l'informatique).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige ton plan de découverte : 4 thèmes, 2 ou 3 questions par thème.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Vérifie : au moins trois types de questions · aucune question dont tu connais déjà la réponse (transforme-la en question de validation).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Explique en 1 minute au groupe pourquoi tu as choisi ces questions.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : questions liées à l'historique réel du contact, à l'organisation du client et à ses projets, dans un ordre logique.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple de question de validation : <em>« vous m'aviez indiqué 12 commerciaux, est-ce toujours le cas ? »</em></div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critère « des outils de négociation adaptés sont préparés ».</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 6 -->
+<div class="bloc-titre" id="btog" style="margin-top:40px">
+  <span class="icone">🏛️</span>
+  <h2><small>Séance 6</small>Bloc 6 – Découvrir les besoins d'un acheteur public</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>B to G = relation entre une entreprise et les pouvoirs publics (État, collectivités, hôpitaux publics, universités…) · règles : transparence, égalité des candidats, efficacité.</code>
+  <code>Fournitures et services : sous 60 000 € HT, marché possible de gré à gré, sans publicité ni mise en concurrence · à partir de 60 000 € HT, mise en concurrence avec publicité, sauf exceptions.</code>
+  <code>AAPC = avis d'appel public à la concurrence : objet, lieu d'exécution, contraintes, estimation des besoins, critères d'attribution, date limite de dépôt.</code>
+  <code>Découvrir les besoins de l'acheteur public = analyser l'appel d'offres + le rencontrer quand c'est possible (objet, délais, contraintes, quantités).</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 21</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Gré à gré ou mise en concurrence ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Cinq projets d'achat de services informatiques dans des collectivités du département.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Projet</th><th>Montant estimé</th></tr></thead><tbody><tr><td>A – 6 licences CRM pour la mairie de Val Fleuri</td><td>9 000 € HT</td></tr><tr><td>B – application de réservation pour une médiathèque</td><td>59 000 € HT</td></tr><tr><td>C – tablettes et application pour la police municipale</td><td>60 000 € HT</td></tr><tr><td>D – application de suivi de la voirie du Val Fleuri</td><td>85 000 € HT</td></tr><tr><td>E – CRM pour un office de tourisme</td><td>14 500 € HT</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Pour chaque projet, indique la procédure : gré à gré possible ou mise en concurrence avec publicité.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour les projets de gré à gré, que doit faire RESO pour être choisi ?</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> attention au projet C, pile au seuil.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Projet</th><th>Procédure</th></tr></thead><tbody><tr><td>A</td><td class="val">gré à gré possible</td></tr><tr><td>B</td><td class="val">gré à gré possible</td></tr><tr><td>C</td><td class="val">mise en concurrence (60 000 € HT atteint)</td></tr><tr><td>D</td><td class="val">mise en concurrence</td></tr><tr><td>E</td><td class="val">gré à gré possible</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> Se faire connaître des services concernés et de certains élus, entretenir la relation, être contacté au moment du besoin.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 22</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Répondre ou pas à un appel d'offres ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta tutrice te transmet deux avis d'appel public à la concurrence trouvés sur une plateforme de marchés publics.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Élément</th><th>Avis 1</th><th>Avis 2</th></tr></thead><tbody><tr><td>Acheteur</td><td>Communauté de communes du Val Fleuri</td><td>une métropole</td></tr><tr><td>Objet</td><td>application de suivi des interventions et 40 tablettes pour le service voirie</td><td>installation et maintenance sur site de 300 bornes de recharge</td></tr><tr><td>Lieu</td><td>à 30 km de RESO</td><td>à 800 km de RESO</td></tr><tr><td>Estimation</td><td>85 000 € HT</td><td>1 200 000 € HT</td></tr><tr><td>Critères</td><td>valeur technique 60 % · prix 40 %</td><td>prix 70 % · délai 30 %</td></tr><tr><td>Date limite</td><td>4 décembre 2026</td><td>20 novembre 2026</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>RESO doit-il répondre à chaque avis ? Justifie avec deux éléments.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour l'avis 1, que t'apprend le poids des critères sur ce qui compte pour l'acheteur ?</p></div>
+      <div class="question"><span class="q-num">3</span><p>Rédige trois questions de découverte à poser à M. Ortiz, responsable du service technique.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Avis 1 : oui, l'objet correspond à l'offre de RESO, le lieu est proche et la valeur technique pèse 60 %. Avis 2 : non, l'objet est hors activité (installation électrique), le lieu est éloigné et le montant est sans rapport avec la taille de RESO.</div>
+      <div class="corr-etape"><span class="c-num">2</span> La qualité technique compte plus que le prix : la découverte doit porter sur les besoins techniques précis du service.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Exemples : <em>« comment vos agents transmettent-ils aujourd'hui leurs comptes rendus d'intervention ? »</em> · <em>« quels logiciels l'application devra-t-elle rejoindre ? »</em> · <em>« quelles contraintes de terrain devons-nous prévoir ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 23</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Jeu de rôle : la rencontre avec M. Ortiz</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Avant la date limite de l'avis 1 (exercice 22), M. Ortiz accepte de recevoir les candidats pour présenter son besoin. Par trois : commercial RESO, M. Ortiz, observateur. <strong>Seul le joueur M. Ortiz ouvre la correction</strong> pour lire sa fiche secrète.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : mène 5 minutes de découverte pour compléter les informations de l'appel d'offres.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Observateur : liste les informations obtenues par le commercial.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Comparez avec la fiche secrète : combien d'informations ont été découvertes sur 6 ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Fiche secrète de M. Ortiz : 40 agents de voirie, comptes rendus sur papier · certaines zones rurales sans réseau · l'application doit rejoindre le logiciel de gestion actuel de la collectivité · les agents portent des gants l'hiver · mise en service souhaitée au printemps · les élus veulent un bilan mensuel des interventions.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Les informations sur le réseau et les gants sont des contraintes techniques : elles orientent la réponse (fonctionnement sans réseau, écran utilisable avec des gants).</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Si ta situation E5 concerne un client public, présente la procédure d'achat dans le contexte technico-commercial.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 7 -->
+<div class="bloc-titre" id="reformuler" style="margin-top:40px">
+  <span class="icone">🔁</span>
+  <h2><small>Séance 7</small>Bloc 7 – Reformuler pour montrer son écoute</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Reformuler = montrer son écoute · vérifier sa compréhension · encourager le client à en dire plus.</code>
+  <code>Reformulation déduction = tirer une conséquence (« il s'agirait donc de… ? ») · résumé = clore un point (« vous venez de me dire… je vous propose… ») · active = verrouiller (« si je comprends bien, vous voulez… »).</code>
+  <code>Écoute active = laisser parler · relancer · prendre des notes · reformuler sans juger ni proposer de solution trop tôt.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 24</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Quel type de reformulation ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Phrases prononcées par ta tutrice pendant ses rendez-vous.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Phrase</th></tr></thead><tbody><tr><td>1</td><td><em>« Les pannes de synchronisation reviennent chaque mois… il vous faudrait donc un outil plus fiable ? »</em></td></tr><tr><td>2</td><td><em>« Vous venez de m'expliquer comment vos commerciaux travaillent. Je vous propose de parler maintenant de vos projets. »</em></td></tr><tr><td>3</td><td><em>« Si je comprends bien, vous voulez que chaque commercial ait ses fiches clients sur tablette. »</em></td></tr><tr><td>4</td><td><em>« Vos équipes saisissent deux fois les mêmes dossiers : il s'agirait donc de supprimer le papier ? »</em></td></tr><tr><td>5</td><td><em>« Nous avons fait le tour de votre organisation actuelle. Passons à votre calendrier. »</em></td></tr><tr><td>6</td><td><em>« Si je vous suis bien, le plus important pour vous est la formation des utilisateurs, c'est cela ? »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque phrase : déduction, résumé ou active.</p></div>
+      <div class="question"><span class="q-num">2</span><p>À quel moment de l'entretien utilise-t-on surtout la reformulation résumé ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Déduction : 1, 4 · résumé : 2, 5 · active : 3, 6.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Pour clore un thème du plan de découverte et passer au suivant.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 25</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Le relais de la reformulation</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Jeu en continu. Une phrase est projetée, l'enseignant désigne un étudiant qui a <strong>30 secondes</strong> pour la reformuler à l'oral. La classe valide si la reformulation est fidèle et se termine par une question de validation.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Propos du client</th></tr></thead><tbody><tr><td>1</td><td>Mme Roux : <em>« Je veux que mes infirmières passent plus de temps avec les patients et moins avec les papiers. »</em></td></tr><tr><td>2</td><td>Dirigeant de la boulangerie Lemoine : <em>« Je n'y connais rien en informatique et je n'ai pas le temps de me former. »</em></td></tr><tr><td>3</td><td>Inès Barka : <em>« Nos commerciaux perdent leurs notes entre deux rendez-vous, et la direction nous reproche de ne pas faire remonter les informations. »</em></td></tr><tr><td>4</td><td>M. Faure : <em>« Le prix compte, mais je dois surtout justifier mon choix devant la direction. »</em></td></tr><tr><td>5</td><td>M. Ortiz : <em>« Nos agents sont sur le terrain toute la journée, souvent sans réseau. »</em></td></tr><tr><td>6</td><td>Paul Green : <em>« Je veux suivre en temps réel les ventes de chaque commercial. »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Reformule à l'oral la phrase qui t'est attribuée.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Écris ta meilleure reformulation pour deux propos de ton choix.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> reprends l'idée avec tes mots, sans ajouter de solution.</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>N°</th><th>Exemple de reformulation</th></tr></thead><tbody><tr><td>1</td><td class="val">« Si je comprends bien, vous voulez réduire le temps administratif de vos équipes au profit des soins, c'est cela ? »</td></tr><tr><td>2</td><td class="val">« Il vous faut donc un outil utilisable sans formation longue, c'est bien cela ? »</td></tr><tr><td>3</td><td class="val">« Vous cherchez à la fois à sécuriser les notes de vos commerciaux et à rendre compte plus facilement à la direction ? »</td></tr><tr><td>4</td><td class="val">« Si je vous suis bien, vous avez besoin d'éléments solides pour défendre votre choix en interne ? »</td></tr><tr><td>5</td><td class="val">« L'application doit donc fonctionner hors connexion, c'est cela ? »</td></tr><tr><td>6</td><td class="val">« Vous souhaitez un tableau de bord des ventes mis à jour en direct, c'est bien cela ? »</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> <p class="conclu">La reformulation est une technique d'écoute active attendue pendant la négociation simulée.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 26</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Reformuler sans trahir</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Un alternant a enregistré ses reformulations. Chacune contient une erreur.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Le client dit…</th><th>L'alternant reformule…</th></tr></thead><tbody><tr><td>1</td><td><em>« Nos agents oublient parfois de noter leurs interventions. »</em></td><td><em>« Vos agents ne font donc pas leur travail ? »</em></td></tr><tr><td>2</td><td><em>« Je veux réduire la saisie le soir. »</em></td><td><em>« Il vous faut donc notre application avec dictée vocale à 29 € par mois. »</em></td></tr><tr><td>3</td><td><em>« Le budget est serré cette année. »</em></td><td><em>« D'accord, budget serré. »</em></td></tr><tr><td>4</td><td><em>« Je veux voir les chiffres de mes commerciaux. »</em></td><td><em>« Vous souhaitez un dashboard avec des KPI en push synchronisés via API ? »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Nomme l'erreur de chaque reformulation : jugement, solution trop tôt, pas de question de validation, jargon.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Réécris chaque reformulation correctement.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> 1 : jugement · 2 : solution trop tôt · 3 : pas de question de validation · 4 : jargon.</div>
+      <div class="corr-etape"><span class="c-num">2</span> 1 : <em>« Certaines interventions ne sont donc pas enregistrées, c'est cela ? »</em> · 2 : <em>« Vous souhaitez que vos équipes passent moins de temps à saisir le soir, c'est bien cela ? »</em> · 3 : <em>« Le budget est donc limité cette année : avez-vous une enveloppe en tête ? »</em> · 4 : <em>« Vous voulez suivre facilement les résultats de chaque commercial, c'est cela ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 27</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Écoute active en trio</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Par trois. Le « client » raconte pendant 3 minutes un problème réel de son entreprise d'alternance (organisation, outil, délai…). Le commercial l'écoute et le relance. L'observateur coche les techniques utilisées.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : utilise au moins une reformulation de chaque type (déduction, résumé, active).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Observateur : note les reformulations et indique si le client les a validées.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Client : dis en une phrase si tu t'es senti écouté et pourquoi. Changez de rôle.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Attendus : trois reformulations, chacune suivie d'une validation du client (« oui, c'est ça » ou une précision).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Une reformulation corrigée par le client n'est pas un échec : elle apporte une information plus précise.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">À l'épreuve E5, l'écoute active fait partie des outils de communication observés par la commission.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 8 -->
+<div class="bloc-titre" id="adapter" style="margin-top:40px">
+  <span class="icone">🧠</span>
+  <h2><small>Séance 8</small>Bloc 8 – S'adapter à son interlocuteur</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Analyse transactionnelle, 3 états du moi : parent (normes · critique = juge, ordonne · nourricier = soutient, aide) · adulte (logique, analyse) · enfant (émotions · libre = spontané · adapté = soumis ou rebelle).</code>
+  <code>Le commercial cherche à rester en position adulte pour ramener l'échange vers les faits.</code>
+  <code>Signes de reconnaissance : conditionnels = pour ce que l'autre fait · inconditionnels = pour ce que l'autre est.</code>
+  <code>PNL : canal visuel (« c'est clair ») · auditif (« ça me dit quelque chose ») · kinesthésique (« je le sens bien ») · le commercial s'adapte par mimétisme.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 28</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Quel état du moi ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tu as noté ces phrases lors de tes rendez-vous.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Phrase</th></tr></thead><tbody><tr><td>1</td><td>M. Faure : <em>« Chez nous, on respecte les procédures : pas de nouvel outil sans validation. »</em></td></tr><tr><td>2</td><td>Mme Roux : <em>« Mes infirmières sont épuisées, je veux les aider, elles le méritent. »</em></td></tr><tr><td>3</td><td>Inès Barka : <em>« Comparons les deux solutions point par point, avec les coûts sur trois ans. »</em></td></tr><tr><td>4</td><td>Dirigeant Lemoine : <em>« Génial, une tablette ! J'en rêvais pour la boutique ! »</em></td></tr><tr><td>5</td><td>Hugo Lucciano : <em>« De toute façon, la directrice décidera, moi je ferai ce qu'on me dira. »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Identifie l'état du moi : parent critique, parent nourricier, adulte, enfant libre ou enfant adapté.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> 1 : parent critique · 2 : parent nourricier · 3 : adulte · 4 : enfant libre · 5 : enfant adapté.</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 29</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Visuel, auditif ou kinesthésique ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Phrases entendues pendant des découvertes.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Lettre</th><th>Phrase</th></tr></thead><tbody><tr><td>a</td><td><em>« Je ne vois pas bien à quoi ressemblera l'écran d'accueil. »</em></td></tr><tr><td>b</td><td><em>« Ce que vous me dites là sonne juste. »</em></td></tr><tr><td>c</td><td><em>« J'ai besoin d'avoir l'application en main pour me faire une idée. »</em></td></tr><tr><td>d</td><td><em>« Racontez-moi comment ça se passe chez vos autres clients. »</em></td></tr><tr><td>e</td><td><em>« Je ne le sens pas, ce changement. »</em></td></tr><tr><td>f</td><td><em>« Montrez-moi un schéma du déploiement. »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Identifie le canal sensoriel de chaque phrase.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Pour a, b et c, choisis l'outil d'aide à la vente de RESO à utiliser (repères en haut de page).</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Visuel : a, f · auditif : b, d · kinesthésique : c, e.</div>
+      <div class="corr-etape"><span class="c-num">2</span> a : captures d'écran ou maquette · b : témoignage d'un client · c : tablette de démonstration. <p class="conclu">Critère « des outils de communication et de négociation adaptés au contexte sont mobilisés ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 30</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Signes de reconnaissance et réponse adulte</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Phrases prononcées par des commerciaux de RESO.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>N°</th><th>Phrase du commercial</th></tr></thead><tbody><tr><td>1</td><td><em>« Merci pour le tableau très clair que vous m'avez envoyé. »</em></td></tr><tr><td>2</td><td><em>« C'est toujours un plaisir de vous rencontrer. »</em></td></tr><tr><td>3</td><td><em>« Votre question sur la sécurité est très pertinente. »</em></td></tr><tr><td>4</td><td><em>« On sent que vous aimez votre métier. »</em></td></tr><tr><td>5</td><td><em>« J'apprécie votre façon de mener cet entretien. »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Classe chaque signe de reconnaissance : conditionnel ou inconditionnel.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Paul Green s'emporte : <em>« Vos logiciels plantent tout le temps ! »</em> Quel est son état du moi ? Rédige une réponse en position adulte.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Conditionnels (ce que la personne fait) : 1, 3, 5 · inconditionnels (ce que la personne est) : 2, 4.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Parent critique. Exemple de réponse adulte : <em>« Vous avez eu un bug de synchronisation en mars. Pouvez-vous me dire précisément ce qui s'est passé depuis, pour que je vérifie avec notre service technique ? »</em> <p class="conclu">On ne se justifie pas et on ne contre-attaque pas : on revient aux faits.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 31</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Garder la position adulte face à un client difficile</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Par deux. Le client tire au sort un personnage et le joue de façon marquée pendant 3 minutes de découverte.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Personnage</th><th>Attitude à jouer</th></tr></thead><tbody><tr><td>Paul Green, OXO</td><td>parent critique : reproche le bug de mars, coupe la parole</td></tr><tr><td>Hugo Lucciano, OXO</td><td>enfant adapté : répond « je ne sais pas, c'est la directrice qui voit »</td></tr><tr><td>Dirigeant de la boulangerie Lemoine</td><td>enfant libre : s'enthousiasme, part dans tous les sens</td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : mène la découverte en restant en position adulte et utilise au moins un signe de reconnaissance.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Repère le canal sensoriel du client et adapte un mot de ta réponse à ce canal.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Changez de rôle avec un autre personnage.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Paul Green : reformuler le reproche, revenir aux faits, poser une question précise · Hugo Lucciano : valoriser son avis (signe de reconnaissance), questions sur son quotidien d'utilisateur · Lemoine : recentrer avec une reformulation résumé et une question fermée.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : à un visuel, <em>« je vais vous montrer »</em> · à un auditif, <em>« écoutez ce qu'en dit un de nos clients »</em> · à un kinesthésique, <em>« prenez la tablette en main »</em>.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Pendant la négociation simulée, la commission peut jouer un client difficile : la position adulte montre ta maîtrise de la relation.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 9 -->
+<div class="bloc-titre" id="synthese" style="margin-top:40px">
+  <span class="icone">📝</span>
+  <h2><small>Séance 9</small>Bloc 9 – Synthétiser avant d'argumenter</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Prise de notes pendant la découverte = mots-clés, chiffres, phrases exactes du client.</code>
+  <code>Synthèse = bilan de la découverte avant d'argumenter : besoins + contraintes (budget, délai) + motivations + question de validation.</code>
+  <code>Formule type : « Donc, si je vous ai bien compris, vous souhaitez… C'est bien cela ? »</code>
+  <code>La synthèse validée par le client sert de base à la solution proposée et à l'argumentation.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 32</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Bonne ou mauvaise synthèse ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Après la découverte avec Mme Roux, trois alternants proposent une synthèse. Mme Roux a exprimé : fiabilité avant tout · 25 infirmières · 1 heure perdue par jour · budget de 40 000 € HT · équipement avant l'été.</div>
+    <div class="table-wrap"><table class="tableau-donnees"><thead><tr><th>Alternant</th><th>Synthèse</th></tr></thead><tbody><tr><td>A</td><td><em>« Vous voulez des tablettes. Je vais vous présenter notre application, qui a plein de fonctions géniales, la dictée vocale, le tableau de bord… »</em></td></tr><tr><td>B</td><td><em>« Si je vous ai bien comprise, vous voulez faire gagner du temps à vos 25 infirmières, avec un outil fiable, avant l'été. C'est bien cela ? »</em></td></tr><tr><td>C</td><td><em>« Donc, si je vous ai bien comprise, vous voulez un outil fiable avant tout, pour que vos 25 infirmières ne perdent plus une heure par jour en double saisie, pour un budget de 40 000 € HT et une mise en service avant l'été. C'est bien cela ? »</em></td></tr></tbody></table></div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Quelle est la meilleure synthèse ? Justifie.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Nomme le défaut des deux autres.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <p class="res">C : besoins, motivation, contraintes de budget et de délai, question de validation.</p></div>
+      <div class="corr-etape"><span class="c-num">2</span> A : ce n'est pas une synthèse, c'est un passage trop rapide à l'argumentation, sans validation · B : oubli du budget et de la motivation dominante (fiabilité exprimée mais pas mise en avant).</div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 33</span>
+    <span class="badge badge-2">◆ intermédiaire</span>
+    <span class="exo-titre-txt">Des notes en vrac à la synthèse</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Tes notes prises pendant la découverte chez le <strong>dirigeant de la boulangerie Lemoine</strong> : 120 clients réguliers · commandes notées dans un cahier · 3 commandes de bûches oubliées à Noël dernier · veut être équipé avant le 1er décembre · budget maximum : 60 € par mois · <em>« je n'ai pas le temps de me former »</em> · son fils l'aide pour le site internet · se méfie des abonnements sans fin.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Trie les notes : besoins, contraintes, motivations, freins, informations utiles.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Rédige la synthèse en 3 phrases maximum, terminée par une question de validation.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> <div class="table-wrap"><table class="tableau-corr"><thead><tr><th>Catégorie</th><th>Notes</th></tr></thead><tbody><tr><td>besoins</td><td class="val">ne plus oublier de commandes, suivre 120 clients réguliers</td></tr><tr><td>contraintes</td><td class="val">avant le 1er décembre · 60 € par mois maximum</td></tr><tr><td>motivations</td><td class="val">confort (pas de temps pour se former) · sécurité (ne plus perdre de commandes)</td></tr><tr><td>freins</td><td class="val">méfiance envers les abonnements sans fin</td></tr><tr><td>informations utiles</td><td class="val">le fils peut être un relais (prescripteur) · le cahier actuel</td></tr></tbody></table></div></div>
+      <div class="corr-etape"><span class="c-num">2</span> Exemple : <em>« Donc, si je vous ai bien compris, vous voulez un outil simple, sans formation, pour ne plus oublier aucune commande de vos 120 clients réguliers. Il doit être prêt avant le 1er décembre, pour 60 € par mois au plus, sans engagement sans fin. C'est bien cela ? »</em></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 34</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">La synthèse chronométrée chez OXO</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Fin de la découverte avec Inès Barka. Tes notes : <strong>12 commerciaux</strong> itinérants · notes perdues entre les rendez-vous · bug de synchronisation en mars · souhait de fiches clients sur tablette · la directrice, Kenza Bénard, veut des remontées chaque semaine · budget annoncé : <strong>15 000 € HT</strong> · déploiement avant la réunion commerciale de janvier · motivations : sécurité et confort.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Rédige ta synthèse en 4 phrases maximum, terminée par une question de validation.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Dis-la à l'oral en 45 secondes, ton binôme chronomètre.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Inès répond : <em>« oui, mais il faudra aussi convaincre la directrice. »</em> Que fais-tu ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Exemple : <em>« Donc, si je vous ai bien comprise, vous souhaitez que vos 12 commerciaux retrouvent leurs fiches clients sur tablette, sans perte de notes ni problème de synchronisation. Vous voulez aussi faciliter les remontées hebdomadaires à la direction. Le tout pour un budget de 15 000 € HT et avant la réunion de janvier. C'est bien cela ? »</em></div>
+      <div class="corr-etape"><span class="c-num">2</span> Attendus : besoins, contraintes (budget, délai), motivations prises en compte, question de validation.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Reformuler, puis questionner sur le circuit de décision, et proposer de préparer ensemble un support pour la directrice ou une démonstration commune. <p class="conclu">Démarche collaborative et proactive, attendue à l'épreuve E5.</p></div>
+    </div>
+  </div>
+</details>
+<hr class="section-sep">
+
+<!-- BLOC 10 -->
+<div class="bloc-titre" id="examen" style="margin-top:40px">
+  <span class="icone">🎓</span>
+  <h2><small>Séance 10</small>Bloc 10 – Entraînement à l'épreuve E5</h2>
+</div>
+<div class="memo">
+  <div class="memo-titre">🗂 mémo</div>
+  <code>Épreuve E5 – conception et négociation de solutions technico-commerciales (anciennement E4).</code>
+  <code>Situation 1 : présentation orale de la préparation d'un entretien (20 min au maximum) + entretien avec la commission (10 min au maximum).</code>
+  <code>Situation 2 : négociation simulée à partir de la situation modifiée (15 à 20 min) + entretien (10 min au maximum).</code>
+  <code>La commission attend les moments clés de l'entretien : comment tu as pris contact, ce que la découverte t'a appris, comment tu l'as vérifié.</code>
+</div>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 35</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Négociation simulée à la Clinique des Tilleuls</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Par trois : un commercial RESO, M. Faure, un observateur. <strong>Seul le joueur M. Faure ouvre la correction</strong> pour lire sa fiche secrète. Le commercial sait seulement ceci : la Clinique des Tilleuls est une clinique privée de 300 salariés, dirigée par Mme Roux · M. Faure, du service achats, a commenté un post LinkedIn de RESO sur la saisie des dossiers patients · il a accepté un rendez-vous de 20 minutes. Les points forts de l'offre RESO sont dans les repères, en haut de la page.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Commercial : mène en 8 minutes la prise de contact, la découverte et la synthèse.</p></div>
+      <div class="question"><span class="q-num">2</span><p>Observateur : note les 4 × 20, les types de questions, les reformulations et la synthèse.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Débriefing de 2 minutes, puis changez de rôle.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Fiche secrète de M. Faure : 25 infirmières réparties dans 3 services · double saisie papier puis ordinateur · un essai raté avec un autre prestataire il y a deux ans · budget : 40 000 € HT · équipement souhaité avant l'été · motivations : sécurité et argent · la décision finale revient à Mme Roux.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Le commercial doit découvrir au moins : le fonctionnement actuel, le précédent échec, le budget, le délai et le rôle de Mme Roux.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Critères « le contexte technico-commercial et les attentes du prospect sont identifiés » et « une démarche proactive de négociation est mise en œuvre ».</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 36</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Les questions de la commission</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Après ta négociation (ta situation E5 ou celle de l'exercice 35), la commission t'interroge. Ton binôme joue le jury et te pose les questions dans le désordre. Réponds en 1 minute maximum à chacune.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Pourquoi avez-vous choisi cette accroche ?</p></div>
+      <div class="question"><span class="q-num">2</span><p>Comment avez-vous identifié la motivation principale du client ?</p></div>
+      <div class="question"><span class="q-num">3</span><p>Qu'avez-vous appris pendant la découverte que vous ne saviez pas avant ?</p></div>
+      <div class="question"><span class="q-num">4</span><p>Si c'était à refaire, quelle question ajouteriez-vous ?</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Relier l'accroche à l'historique du contact (accroche historique) ou à l'absence de contact (accroche avantage).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Citer une phrase précise du client et la question qui a permis de la vérifier.</div>
+      <div class="corr-etape"><span class="c-num">3</span> Donner une information concrète (contrainte, frein, décideur) et expliquer en quoi elle change la proposition.</div>
+      <div class="corr-etape"><span class="c-num">4</span> <p class="conclu">Reconnaître un manque avec précision montre ta capacité d'analyse : c'est valorisé par la commission.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 37</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Changement de paramètre</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">La commission modifie la situation : le rendez-vous avec Inès Barka devait durer 45 minutes. À ton arrivée, elle n'a plus que <strong>10 minutes</strong>, et <strong>Paul Green</strong>, directeur commercial, assiste à l'entretien.</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Qu'est-ce qui change dans ta prise de contact ?</p></div>
+      <div class="question"><span class="q-num">2</span><p>Choisis les 4 questions prioritaires de ton plan de découverte (exercice 18).</p></div>
+      <div class="question"><span class="q-num">3</span><p>Joue les 5 premières minutes avec deux camarades.</p></div>
+    </div>
+    <div class="ordre-grandeur"><strong>Coup de pouce :</strong> Paul Green veut suivre les ventes en temps réel (exercice 25).</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Saluer et inclure Paul Green, annoncer un nouveau but adapté à 10 minutes, utiliser une accroche qui le concerne (suivi des ventes).</div>
+      <div class="corr-etape"><span class="c-num">2</span> Priorités : besoin principal, délai, budget, circuit de décision.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Objectif de repli : obtenir un second rendez-vous ou une démonstration, si possible avec la directrice.</p></div>
+    </div>
+  </div>
+</details>
+
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 38</span>
+    <span class="badge badge-exam">★ examen</span>
+    <span class="exo-titre-txt">Check-list de ta fiche descriptive : la découverte</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">Ta fiche descriptive doit être rendue en février. Ouvre ton brouillon de fiche sur ton ordinateur. Rappel du contenu attendu : acteurs et rôles · historique du contact · attentes et motivations du client · stratégie de négociation · annexes (plan de découverte, argumentaires…).</div>
+    <div class="questions">
+      <div class="question"><span class="q-num">1</span><p>Vérifie que ta fiche présente : l'historique du contact, les attentes du client identifiées, les outils de négociation (plan de découverte en annexe).</p></div>
+      <div class="question"><span class="q-num">2</span><p>Note les 3 éléments à compléter en priorité.</p></div>
+      <div class="question"><span class="q-num">3</span><p>Raconte en 30 secondes le moment clé de ta découverte.</p></div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape"><span class="c-num">1</span> Les attentes du client doivent être formulées avec ses propres mots, comme dans une reformulation, et le plan de découverte doit correspondre à l'historique du contact décrit dans la fiche.</div>
+      <div class="corr-etape"><span class="c-num">2</span> Toute information non vérifiée est présentée comme une hypothèse.</div>
+      <div class="corr-etape"><span class="c-num">3</span> <p class="conclu">Le moment clé est celui où une information découverte a orienté ta proposition.</p></div>
+    </div>
+  </div>
+</details>
+</main>
+
+<footer class="site-footer">
+  BTS CCST – Bloc 1, épreuve E5 &nbsp;|&nbsp; Chapitre 9 : prendre contact et découvrir les besoins du client &nbsp;|&nbsp; 38 exercices progressifs
+</footer>
+
+<script>
+function toggleCorr(btn) {
+  const corr = btn.nextElementSibling;
+  const isVisible = corr.classList.contains('visible');
+  corr.classList.toggle('visible', !isVisible);
+  btn.textContent = isVisible ? '✅ Voir la correction' : '🔒 Masquer la correction';
+}
+</script>
+</body>
+</html>
